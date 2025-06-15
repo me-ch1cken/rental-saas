@@ -9,6 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@fullcalendar/core": "^6.1.17",
+    "@fullcalendar/daygrid": "^6.1.17",
+    "@fullcalendar/react": "^6.1.17",
     "@radix-ui/react-dialog": "^1.1.14",
     "@radix-ui/react-popover": "^1.1.14",
     "@radix-ui/react-separator": "^1.1.7",

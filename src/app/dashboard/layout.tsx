@@ -6,7 +6,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     return (
         <SidebarProvider>
             <AppSidebar />
-            <main>
+            <main className="ms-4">
                 { children }
             </main>
         </SidebarProvider>
