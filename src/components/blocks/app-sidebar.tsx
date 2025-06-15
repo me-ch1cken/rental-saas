@@ -86,7 +86,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                                                 navItem.currentlyActive = false
                                             }
                                             item.currentlyActive = true
-                                            setNavitems([...navItems]) // Update state to re-render
+                                            setNavitems([...navItems])
                                         }}>
                                             <item.icon />
                                             <span>{item.title}</span>
