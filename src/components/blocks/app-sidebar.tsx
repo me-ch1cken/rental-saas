@@ -21,30 +21,35 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 
 // Navigation items
-const navItems = [
+const links = [
     {
         title: "Overview",
         url: "#",
         icon: PieChart,
+        currentlyActive: true,
     },
     {
         title: "Reservations",
         url: "#",
         icon: Calendar,
+        currentlyActive: false,
     },
     {
         title: "Stock",
         url: "#",
         icon: Package,
+        currentlyActive: false,
     },
     {
         title: "History",
         url: "#",
         icon: History,
+        currentlyActive: false,
     },
 ]
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+    const [navItems, setNavitems] = React.useState(links)
     const [isPopoverOpen, setIsPopoverOpen] = React.useState(false)
     const [isPromotionVisible, setIsPromotionVisible] = React.useState(true)
 
@@ -75,8 +80,14 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                         <SidebarMenu>
                             {navItems.map((item) => (
                                 <SidebarMenuItem key={item.title}>
-                                    <SidebarMenuButton asChild className="px-3 py-2">
-                                        <a href={item.url}>
+                                    <SidebarMenuButton asChild className={"px-3 py-2" + (item.currentlyActive ? " bg-sidebar-accent text-sidebar-accent-foreground" : "")}>
+                                        <a href={item.url} onClick={(e) => {
+                                            for (const navItem of navItems) {
+                                                navItem.currentlyActive = false
+                                            }
+                                            item.currentlyActive = true
+                                            setNavitems([...navItems]) // Update state to re-render
+                                        }}>
                                             <item.icon />
                                             <span>{item.title}</span>
                                         </a>
