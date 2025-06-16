@@ -18,12 +18,6 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { Calendar } from "@/components/ui/calendar"
 
-interface RentalFormDialogProps {
-    open: boolean
-    onOpenChange: (open: boolean) => void
-    date: string | null
-}
-
 export function RentalFormDialog({ open, onOpenChange, date }: RentalFormDialogProps) {
     const [endDate, setEndDate] = useState<Date | undefined>()
     const [agreed, setAgreed] = useState(false)
