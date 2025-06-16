@@ -124,3 +124,7 @@
 .fc-header-toolbar.fc-toolbar {
     margin-bottom: 12px !important;
 }
+
+.fc-daygrid-day-frame.fc-scrollgrid-sync-inner {
+    @apply cursor-pointer;
+}
