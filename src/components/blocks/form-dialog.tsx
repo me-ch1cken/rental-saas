@@ -65,34 +65,34 @@ export function RentalFormDialog({ open, onOpenChange, date }: RentalFormDialogP
                 >
                     <div className="grid grid-cols-2 gap-4">
                         <div>
-                            <Label htmlFor="firstName">First Name</Label>
+                            <Label className="mb-2" htmlFor="firstName">First Name</Label>
                             <Input id="firstName" name="firstName" required />
                         </div>
                         <div>
-                            <Label htmlFor="lastName">Last Name</Label>
+                            <Label className="mb-2" htmlFor="lastName">Last Name</Label>
                             <Input id="lastName" name="lastName" required />
                         </div>
                     </div>
 
                     <div className="grid grid-cols-2 gap-4">
                         <div>
-                            <Label htmlFor="phone">Phone Number</Label>
+                            <Label className="mb-2" htmlFor="phone">Phone Number</Label>
                             <Input id="phone" name="phone" type="tel" required />
                         </div>
                         <div>
-                            <Label htmlFor="email">Email Address</Label>
+                            <Label className="mb-2" htmlFor="email">Email Address</Label>
                             <Input id="email" name="email" type="email" required />
                         </div>
                     </div>
 
                     <div>
-                        <Label htmlFor="startDate">Start Date</Label>
+                        <Label className="mb-2" htmlFor="startDate">Start Date</Label>
                         <Input id="startDate" value={date ?? ""} disabled />
                     </div>
 
                     <div className="grid grid-cols-2 gap-4">
                         <div>
-                            <Label>End Date</Label>
+                            <Label className="mb-2">End Date</Label>
                             <Popover>
                                 <PopoverTrigger asChild>
                                     <Button
@@ -118,18 +118,18 @@ export function RentalFormDialog({ open, onOpenChange, date }: RentalFormDialogP
                         </div>
 
                         <div>
-                            <Label htmlFor="endTime">End Time (if no duration)</Label>
+                            <Label className="mb-2" htmlFor="endTime">End Time (if no duration)</Label>
                             <Input id="endTime" name="endTime" type="time" />
                         </div>
                     </div>
 
                     <div>
-                        <Label htmlFor="duration">Duration (if no end time)</Label>
+                        <Label className="mb-2" htmlFor="duration">Duration (if no end time)</Label>
                         <Input id="duration" name="duration" placeholder="e.g. 2 hours" />
                     </div>
 
                     <div>
-                        <Label>Rental Items</Label>
+                        <Label className="mb-2">Rental Items</Label>
                         <div className="space-y-1 mt-1">
                             {rentalOptions.map(({ value, label }) => (
                                 <div key={value} className="flex items-center space-x-2">
