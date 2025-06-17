@@ -1,7 +1,7 @@
 'use client'
 
-import { useState } from "react"
-import { format } from "date-fns"
+import { useState, useEffect } from "react"
+import { format, parseISO, isValid } from "date-fns"
 import { CalendarIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
 import {
@@ -18,10 +18,24 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { Calendar } from "@/components/ui/calendar"
 
+type RentalFormDialogProps = {
+    open: boolean
+    onOpenChange: (open: boolean) => void
+    date: string | null
+}
+
 export function RentalFormDialog({ open, onOpenChange, date }: RentalFormDialogProps) {
-    const [endDate, setEndDate] = useState<Date | undefined>()
+    const initialDate = date ? parseISO(date) : undefined
+    const [endDate, setEndDate] = useState<Date | undefined>(
+        initialDate && isValid(initialDate) ? initialDate : undefined
+    )
     const [agreed, setAgreed] = useState(false)
     const [selectedItems, setSelectedItems] = useState<string[]>([])
+
+    useEffect(() => {
+        const parsed = date ? parseISO(date) : undefined
+        setEndDate(parsed && isValid(parsed) ? parsed : undefined)
+    }, [date])
 
     const rentalOptions = [
         { value: "station-1", label: "Station 1" },
@@ -47,12 +61,10 @@ export function RentalFormDialog({ open, onOpenChange, date }: RentalFormDialogP
                 <form
                     onSubmit={(e) => {
                         e.preventDefault()
-                        // handle submission, e.g. collect form data here
                         console.log({
                             selectedItems,
                             agreed,
                             endDate,
-                            // ...other fields
                         })
                     }}
                     className="space-y-4"
@@ -81,7 +93,11 @@ export function RentalFormDialog({ open, onOpenChange, date }: RentalFormDialogP
 
                     <div>
                         <Label className="mb-2" htmlFor="startDate">Start Date</Label>
-                        <Input id="startDate" value={date ?? ""} disabled />
+                        <Input
+                            id="startDate"
+                            value={date ? format(parseISO(date), "PPP") : ""}
+                            disabled
+                        />
                     </div>
 
                     <div className="grid grid-cols-2 gap-4">
@@ -105,7 +121,6 @@ export function RentalFormDialog({ open, onOpenChange, date }: RentalFormDialogP
                                         mode="single"
                                         selected={endDate}
                                         onSelect={setEndDate}
-                                        initialFocus
                                     />
                                 </PopoverContent>
                             </Popover>
