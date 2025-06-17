@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  rental-saas:
+    image: postgres:16
+    container_name: rental-saas
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: rental_saas_db
+      POSTGRES_USER: dev_admin
+      POSTGRES_PASSWORD: dev_pw
+    ports:
+      - "5432:5432"
+    volumes:
+      - rental_saas_data:/var/lib/postgresql/data
+
+volumes:
+  rental_saas_data:
